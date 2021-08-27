@@ -117,7 +117,7 @@ public class FornecedorDAO {
      java.util.List<Fornecedor> lista = new ArrayList<>();
      
          try {
-              String cmsqlb = "select * from fornecedor Where NomeFant = ?";
+              String cmsqlb = "select * from fornecedor Where NomeFant LIKE ?";
               
              // 1º Organizar o Comando SQL
              

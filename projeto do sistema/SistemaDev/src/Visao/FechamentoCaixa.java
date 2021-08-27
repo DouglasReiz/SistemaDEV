@@ -5,8 +5,10 @@
  */
 package Visao;
 
-import DAO.FornecedorDAO;
-import Modelo.Fornecedor;
+import DAO.CaixaDAO;
+import DAO.ProdutoDAO;
+import Modelo.Caixa;
+import Modelo.Produto;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -15,19 +17,16 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Jorge
  */
-public class BuscarFornecedor extends javax.swing.JFrame {
+public class FechamentoCaixa extends javax.swing.JFrame {
 
     /**
-     * Creates new form BuscarFornecedor
+     * Creates new form FechamentoCaixa
      */
-    public BuscarFornecedor() {
-        initComponents();
+    public FechamentoCaixa() {
         initComponents();
         DefaultTableModel T = (DefaultTableModel) jTable1.getModel();
         jTable1.setRowSorter(new TableRowSorter(T));
-        
         ReadjTable();
-        
     }
 
     /**
@@ -43,21 +42,21 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldBusca = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jTextFieldBuscar = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jButtonExcluir = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();
-        jTextFieldNome = new javax.swing.JTextField();
-        jTextFieldRazao = new javax.swing.JTextField();
-        jTextFieldCNPJ = new javax.swing.JTextField();
+        jTextFieldMes = new javax.swing.JTextField();
+        jTextFieldEntradas = new javax.swing.JTextField();
+        jTextFieldSaida = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,17 +69,7 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         jLabel1.setText("Pagina de busca");
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jLabel3.setText("Digite o nome");
-
-        jTextFieldBusca.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-
-        jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Digite o Mês");
 
         jButton2.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButton2.setText("Cancelar");
@@ -91,10 +80,18 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jButton3.setText("Buscar Produto");
+        jButton3.setText("Buscar Fornecedor");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -107,15 +104,15 @@ public class BuscarFornecedor extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                .addComponent(jTextFieldBusca))
-                            .addComponent(jButton3))
+                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -127,54 +124,17 @@ public class BuscarFornecedor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome Fantasia", "Razão Social", "CNPJ"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable1KeyReleased(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
         jButtonExcluir.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButtonExcluir.setText("Excluir");
@@ -192,36 +152,51 @@ public class BuscarFornecedor extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Nome");
+        jLabel4.setText("Saida");
 
-        jLabel5.setText("Razão social");
+        jLabel5.setText("Entrada");
 
-        jLabel6.setText("CNPJ");
+        jLabel6.setText("Saida");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Mês ", "Entradas", "Saídas", "Lucro"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMes, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldRazao)
+                            .addComponent(jTextFieldEntradas)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldCNPJ)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextFieldSaida)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -237,9 +212,9 @@ public class BuscarFornecedor extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRazao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldMes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -282,8 +257,7 @@ public class BuscarFornecedor extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(870, 486));
-        setLocationRelativeTo(null);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -291,31 +265,34 @@ public class BuscarFornecedor extends javax.swing.JFrame {
        
         
         DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
-    M.setNumRows(0);
-        FornecedorDAO daof = new FornecedorDAO();
-        for(Fornecedor f : daof.buscarFornecedor()){
+    
+        CaixaDAO daoc = new CaixaDAO();
+        for(Caixa c : daoc.buscarFluxo()){
         
         M.addRow(new Object[]{
-            f.getId_fornecedor(),
-            f.getNomeFnt(),
-            f.getRazaoSocial(),
-            f.getCNPJ()            
+            c.getId_caixa(),
+            c.getMes(),
+            c.getEntradas(),
+            c.getSaidas(),
+            c.getLucro()
         });
+    
         }
     }
     
-    public void BuscarjTable(String Name){
+    
+    public void BuscarjTable(String Mes){
     DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
     M.setNumRows(0);
-        FornecedorDAO daof = new FornecedorDAO();
-        for(Fornecedor f : daof.buscarfornecedor(Name)){
+        CaixaDAO daoc = new CaixaDAO();
+        for(Caixa c : daoc.buscarPorFLuxo(Mes)){
         
         M.addRow(new Object[]{
-            f.getId_fornecedor(),
-            f.getNomeFnt(),
-            f.getRazaoSocial(),
-            f.getCNPJ()
-            
+            c.getId_caixa(),
+            c.getMes(),
+            c.getEntradas(),
+            c.getSaidas(),
+            c.getLucro()
         });
     
         }
@@ -324,14 +301,6 @@ public class BuscarFornecedor extends javax.swing.JFrame {
     }
     
     
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        BuscarjTable(jTextFieldBusca.getText());
-        
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Inicial i = new Inicial();
@@ -339,45 +308,33 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if(jTable1.getSelectedRow() != -1){
+        BuscarFornecedor b = new BuscarFornecedor();
+        b.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-            jTextFieldNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
-            jTextFieldRazao.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-            jTextFieldCNPJ.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
-        }else{
-            JOptionPane.showMessageDialog(null, "selecione uma linha");
-        }
-
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTable1.getSelectedRow() != -1){
 
-            jTextFieldNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
-            jTextFieldRazao.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-            jTextFieldCNPJ.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
-        }else{
-            JOptionPane.showMessageDialog(null, "selecione uma linha");
-        }
+        BuscarjTable(jTextFieldBuscar.getText());
 
-    }//GEN-LAST:event_jTable1KeyReleased
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(jTable1.getSelectedRow() != -1){
 
-            Fornecedor f = new Fornecedor();
-            FornecedorDAO daop = new FornecedorDAO();
+            Caixa c = new Caixa();
+            CaixaDAO daoc = new CaixaDAO();
 
-            f.setId_fornecedor((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-            daop.Excluir(f);
+            c.setId_caixa((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+            daoc.Excluir(c);
 
-            jTextFieldNome.setText("");
-            jTextFieldRazao.setText("");
-            jTextFieldCNPJ.setText("");
+            jTextFieldMes.setText("");
+            jTextFieldEntradas.setText("");
+            jTextFieldSaida.setText("");
 
             ReadjTable();
         }else {
@@ -390,31 +347,25 @@ public class BuscarFornecedor extends javax.swing.JFrame {
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // TODO add your handling code here:
 
-        
+        float Valor = Float.parseFloat(jTextFieldSaida.getText());
+        float Ent = Float.parseFloat(jTextFieldEntradas.getText());
 
-        Fornecedor f = new Fornecedor();
-        FornecedorDAO daof = new FornecedorDAO();
+        Caixa c = new Caixa();
+        CaixaDAO daoc = new CaixaDAO();
 
-        f.setNomeFnt(jTextFieldNome.getText());
-        f.setRazaoSocial(jTextFieldRazao.getText());
-        f.setCNPJ(jTextFieldCNPJ.getText());
-        f.setId_fornecedor((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        daof.AtualizarFornecedor(f);
+        c.setMes(jTextFieldMes.getText());
+        c.setEntradas(Ent);
+        c.setSaidas(Valor);
+        c.setId_caixa((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        daoc.AtualizarFluxo(c);
 
-        jTextFieldNome.setText("");
-        jTextFieldRazao.setText("");
-        jTextFieldCNPJ.setText("");
+        jTextFieldMes.setText("");
+        jTextFieldEntradas.setText("");
+        jTextFieldSaida.setText("");
 
         ReadjTable();
 
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Busca b = new Busca();
-        b.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,20 +384,20 @@ public class BuscarFornecedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FechamentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FechamentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FechamentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FechamentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarFornecedor().setVisible(true);
+                new FechamentoCaixa().setVisible(true);
             }
         });
     }
@@ -467,9 +418,9 @@ public class BuscarFornecedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFieldBusca;
-    private javax.swing.JTextField jTextFieldCNPJ;
-    private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldRazao;
+    private javax.swing.JTextField jTextFieldBuscar;
+    private javax.swing.JTextField jTextFieldEntradas;
+    private javax.swing.JTextField jTextFieldMes;
+    private javax.swing.JTextField jTextFieldSaida;
     // End of variables declaration//GEN-END:variables
 }

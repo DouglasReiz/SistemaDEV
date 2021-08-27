@@ -5,6 +5,12 @@
  */
 package Visao;
 
+import DAO.CaixaDAO;
+import Modelo.Caixa;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Jorge
@@ -16,6 +22,9 @@ public class FluxoCaixa extends javax.swing.JFrame {
      */
     public FluxoCaixa() {
         initComponents();
+        DefaultTableModel T = (DefaultTableModel) jTable1.getModel();
+        jTable1.setRowSorter(new TableRowSorter(T));
+        ReadjTable();
     }
 
     /**
@@ -34,6 +43,10 @@ public class FluxoCaixa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jTextFieldMes = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldLucro = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,63 +79,14 @@ public class FluxoCaixa extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mês ", "Entradas", "Saídas", "Lucro"
+                "ID", "Mês ", "Entradas", "Saídas", "Lucro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -131,11 +95,22 @@ public class FluxoCaixa extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
         }
 
         jButton1.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel2.setText("Digite um mês");
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel3.setText("Lucro do mês");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -144,9 +119,21 @@ public class FluxoCaixa extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldLucro)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldMes)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +141,14 @@ public class FluxoCaixa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldMes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldLucro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
                 .addContainerGap())
@@ -196,6 +190,86 @@ public class FluxoCaixa extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void ReadjTable(){
+       
+        
+        DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
+    
+        CaixaDAO daoc = new CaixaDAO();
+        for(Caixa c : daoc.buscarFluxo()){
+        
+        M.addRow(new Object[]{
+            c.getId_caixa(),
+            c.getMes(),
+            c.getEntradas(),
+            c.getSaidas(),
+            c.getLucro()
+        });
+    
+        }
+    }
+    
+    
+    
+    public void BuscarjTable(String Mes){
+    DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
+    M.setNumRows(0);
+        CaixaDAO daoc = new CaixaDAO();
+        for(Caixa c : daoc.buscarPorFLuxo(Mes)){
+        
+        M.addRow(new Object[]{
+            c.getId_caixa(),
+            c.getMes(),
+            c.getEntradas(),
+            c.getSaidas(),
+            c.getLucro()
+        });
+    
+        }
+        
+        
+    }
+    
+    
+    private void calculaFluxo() { 
+        
+        try{ 
+            
+            for (int i = 0 ; i < jTable1.getColumnCount(); i++) {
+                float Lucro;
+                Float valorAuxFloat =(Float) Float.parseFloat(jTable1.getValueAt(i,2).toString());
+                Float ValorFloat = (Float) Float.parseFloat(jTable1.getValueAt(i,3).toString());
+                
+                 Lucro = valorAuxFloat - ValorFloat;
+                 
+                 
+                 jTextFieldLucro.setText(String.valueOf(Lucro));
+             jTable1.setValueAt(String.valueOf(Lucro), i, 4);
+            } 
+            
+            
+           
+            
+            
+            
+        
+        } catch(NumberFormatException e){ 
+            
+            JOptionPane.showMessageDialog(null,"Erro ao calcular Total Produtos: "+e.getMessage()); 
+        
+        } 
+    
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        BuscarjTable(jTextFieldMes.getText());
+        DefaultTableModel T = (DefaultTableModel) jTable1.getModel();
+        Object[] dados = {jTextFieldLucro.getText()};
+        T.addRow(dados);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,10 +308,14 @@ public class FluxoCaixa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldLucro;
+    private javax.swing.JTextField jTextFieldMes;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,7 +37,7 @@ public class Busca extends javax.swing.JFrame {
        
         
         DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
-    M.setNumRows(0);
+    
         ProdutoDAO daop = new ProdutoDAO();
         for(Produto p : daop.buscarProdutos()){
         
@@ -51,11 +51,11 @@ public class Busca extends javax.swing.JFrame {
         }
     }
     
-    public void BuscarjTable(String Cod){
+    public void BuscarjTable(String Nome){
     DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
     M.setNumRows(0);
         ProdutoDAO daop = new ProdutoDAO();
-        for(Produto p : daop.BuscarProduto(Cod)){
+        for(Produto p : daop.buscarproduto(Nome)){
         
         M.addRow(new Object[]{
             p.getId_produto(),
@@ -67,7 +67,7 @@ public class Busca extends javax.swing.JFrame {
     
         }
         
-        ReadjTable();
+        
     }
     
     
@@ -182,16 +182,7 @@ public class Busca extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Código de barras", "Preço", "Classificação"
@@ -416,7 +407,10 @@ public class Busca extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         BuscarjTable(jTextFieldBuscar.getText());
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

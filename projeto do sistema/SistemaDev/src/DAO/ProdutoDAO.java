@@ -145,7 +145,7 @@ public java.util.List<Produto> buscarProdutos(){
      java.util.List<Produto> lista = new ArrayList<>();
      
          try {
-              String cmsqlb = "SELECT * from produto WHERE Nome = ?";
+              String cmsqlb = "SELECT * from produto WHERE Nome LIKE ?";
              // 1º Organizar o Comando SQL
              
              PreparedStatement stmt = conecta.prepareStatement(cmsqlb);
@@ -195,7 +195,7 @@ public java.util.List<Produto> buscarProdutos(){
                  pro.setValordvenda(rs.getFloat("ValorVenda"));
                  lista.add(pro);
                  
-                JOptionPane.showMessageDialog(null, "teste");
+                
              }
         
              
