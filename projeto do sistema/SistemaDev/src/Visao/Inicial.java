@@ -50,6 +50,7 @@ public class Inicial extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
 
         jPanel2.setBackground(new java.awt.Color(53, 136, 178));
 

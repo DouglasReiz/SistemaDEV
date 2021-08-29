@@ -60,6 +60,7 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Busca de Fornecedores");
 
         jPanel1.setBackground(new java.awt.Color(53, 136, 178));
 

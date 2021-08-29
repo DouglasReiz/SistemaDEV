@@ -126,7 +126,8 @@ public java.util.List<Caixa> buscarFluxo(){
                 stmt.setString(1, c.getMes());
                 stmt.setFloat(2, c.getEntradas());
                 stmt.setFloat(3, c.getSaidas());
-                stmt.setInt(4, c.getId_caixa());
+                stmt.setFloat(4, c.getLucro());
+                stmt.setInt(5, c.getId_caixa());
                 // 1Âº Executar Comando SQL
                 stmt.executeUpdate();
                 // 1Âº Fechar ConeÃ§Ã£o

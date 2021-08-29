@@ -30,17 +30,11 @@ public class Busca extends javax.swing.JFrame {
         ReadjTable();
     }
     
-    
-    
-
     public void ReadjTable(){
-       
-        
         DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
     
         ProdutoDAO daop = new ProdutoDAO();
         for(Produto p : daop.buscarProdutos()){
-        
         M.addRow(new Object[]{
             p.getId_produto(),
             p.getNome(),
@@ -56,7 +50,6 @@ public class Busca extends javax.swing.JFrame {
     M.setNumRows(0);
         ProdutoDAO daop = new ProdutoDAO();
         for(Produto p : daop.buscarproduto(Nome)){
-        
         M.addRow(new Object[]{
             p.getId_produto(),
             p.getNome(),
@@ -64,10 +57,7 @@ public class Busca extends javax.swing.JFrame {
             p.getValordvenda(),
             p.getClassificacao()
         });
-    
         }
-        
-        
     }
     
     
@@ -103,6 +93,7 @@ public class Busca extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Busca de produtos");
 
         jPanel1.setBackground(new java.awt.Color(53, 136, 178));
 
@@ -328,25 +319,17 @@ public class Busca extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(jTable1.getSelectedRow() != -1){
-        
-        
-        
         Produto p = new Produto();
         ProdutoDAO daop = new ProdutoDAO();
-        
         p.setId_produto((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         daop.Excluir(p);
-        
         jTextFieldNome.setText("");
         jTextFieldCod.setText("");
         jTextFieldPreco.setText("");
-        
         ReadjTable();
         }else {
             JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
-        
-        }
-        
+        }    
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed

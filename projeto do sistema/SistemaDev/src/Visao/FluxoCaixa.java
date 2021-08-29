@@ -42,13 +42,15 @@ public class FluxoCaixa extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonBusca = new javax.swing.JButton();
         jTextFieldMes = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldLucro = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fluxo de caixa");
 
         jPanel1.setBackground(new java.awt.Color(53, 136, 178));
 
@@ -93,16 +95,21 @@ public class FluxoCaixa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
         }
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBusca.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jButtonBusca.setText("Buscar");
+        jButtonBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonBuscaActionPerformed(evt);
             }
         });
 
@@ -111,6 +118,14 @@ public class FluxoCaixa extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel3.setText("Lucro do mês");
+
+        jButtonSalvar.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -122,7 +137,9 @@ public class FluxoCaixa extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonBusca)
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -149,7 +166,9 @@ public class FluxoCaixa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldLucro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonBusca)
+                            .addComponent(jButtonSalvar)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -234,9 +253,9 @@ public class FluxoCaixa extends javax.swing.JFrame {
     private void calculaFluxo() { 
         
         try{ 
-            
-            for (int i = 0 ; i < jTable1.getColumnCount(); i++) {
-                float Lucro;
+            float Lucro;
+            for (int i = 0 ; i < jTable1.getRowCount(); i++) {
+                
                 Float valorAuxFloat =(Float) Float.parseFloat(jTable1.getValueAt(i,2).toString());
                 Float ValorFloat = (Float) Float.parseFloat(jTable1.getValueAt(i,3).toString());
                 
@@ -261,14 +280,54 @@ public class FluxoCaixa extends javax.swing.JFrame {
     
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaActionPerformed
         // TODO add your handling code here:
-        BuscarjTable(jTextFieldMes.getText());
-        DefaultTableModel T = (DefaultTableModel) jTable1.getModel();
-        Object[] dados = {jTextFieldLucro.getText()};
-        T.addRow(dados);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        
+        BuscarjTable(jTextFieldMes.getText());
+        
+        calculaFluxo();
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonBuscaActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        
+        float lucro = Float.parseFloat(jTextFieldLucro.getText());
+        
+        
+        
+        Caixa c = new Caixa();
+        CaixaDAO daoc = new CaixaDAO();
+        
+        c.setMes((String)jTable1.getValueAt(jTable1.getSelectedRow(), 1));
+        c.setEntradas((float)jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+        c.setSaidas((float)jTable1.getValueAt(jTable1.getSelectedRow(), 3));
+        c.setLucro(lucro);
+        c.setId_caixa((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        daoc.AtualizarFluxo(c);
+        
+        JOptionPane.showMessageDialog(null, "Lucro atualizado");
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        
+        if(jTable1.getSelectedRow() != -1){
+        
+        jTextFieldLucro.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+        
+        }else{
+        JOptionPane.showMessageDialog(null, "selecione uma linha");
+        }
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -306,7 +365,8 @@ public class FluxoCaixa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonBusca;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

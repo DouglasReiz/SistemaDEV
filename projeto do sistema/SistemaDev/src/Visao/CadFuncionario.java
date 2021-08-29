@@ -115,6 +115,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Funcionario");
 
         jPanel1.setBackground(new java.awt.Color(53, 136, 178));
 
@@ -896,6 +897,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         LoginDAO L = new LoginDAO();
         L.cadLogin(l);
         
+        JOptionPane.showMessageDialog(null, "Anote seu codigo de verificção pois só com ele poderá redefinir a senha");
         
         JLogin j = new JLogin();
         j.setVisible(true);

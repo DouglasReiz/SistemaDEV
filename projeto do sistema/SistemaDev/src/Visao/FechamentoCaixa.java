@@ -59,6 +59,7 @@ public class FechamentoCaixa extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fechamento de caixa");
 
         jPanel1.setBackground(new java.awt.Color(53, 136, 178));
 
