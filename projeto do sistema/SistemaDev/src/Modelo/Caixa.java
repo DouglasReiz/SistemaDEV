@@ -15,6 +15,8 @@ public class Caixa {
     private float Entradas;
     private float Saidas;
     private float lucro;
+    private String Dia;
+    private String Hora;
     
 
     public int getId_caixa() {
@@ -56,6 +58,23 @@ public class Caixa {
     public void setLucro(float lucro) {
         this.lucro = lucro;
     }
+
+    public String getDia() {
+        return Dia;
+    }
+
+    public void setDia(String Dia) {
+        this.Dia = Dia;
+    }
+
+    public String getHora() {
+        return Hora;
+    }
+
+    public void setHora(String Hora) {
+        this.Hora = Hora;
+    }
+    
     
     
 }

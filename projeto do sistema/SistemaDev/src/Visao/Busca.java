@@ -198,6 +198,9 @@ public class Busca extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
 
         jButtonExcluir.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButtonExcluir.setText("Excluir");

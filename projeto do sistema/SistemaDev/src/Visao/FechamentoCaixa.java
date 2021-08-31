@@ -6,9 +6,7 @@
 package Visao;
 
 import DAO.CaixaDAO;
-import DAO.ProdutoDAO;
 import Modelo.Caixa;
-import Modelo.Produto;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -43,7 +41,6 @@ public class FechamentoCaixa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jTextFieldBuscar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -67,24 +64,16 @@ public class FechamentoCaixa extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pagina de busca");
+        jLabel1.setText("Fechamento do Caixa");
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jLabel3.setText("Digite o Mês");
+        jLabel3.setText("Digite o mês");
 
         jButton2.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jButton3.setText("Buscar Fornecedor");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -108,8 +97,7 @@ public class FechamentoCaixa extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
@@ -130,8 +118,6 @@ public class FechamentoCaixa extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jButton3)
                 .addContainerGap())
         );
 
@@ -153,7 +139,7 @@ public class FechamentoCaixa extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Saida");
+        jLabel4.setText("Mês");
 
         jLabel5.setText("Entrada");
 
@@ -164,18 +150,31 @@ public class FechamentoCaixa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Mês ", "Entradas", "Saídas", "Lucro"
+                "ID", "Mês ", "Entradas", "Saídas", "Lucro", "Data", "Hora"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -258,7 +257,8 @@ public class FechamentoCaixa extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(878, 486));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -266,7 +266,7 @@ public class FechamentoCaixa extends javax.swing.JFrame {
        
         
         DefaultTableModel M = (DefaultTableModel) jTable1.getModel();
-    
+        M.setNumRows(0);
         CaixaDAO daoc = new CaixaDAO();
         for(Caixa c : daoc.buscarFluxo()){
         
@@ -309,13 +309,6 @@ public class FechamentoCaixa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        BuscarFornecedor b = new BuscarFornecedor();
-        b.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
@@ -333,9 +326,7 @@ public class FechamentoCaixa extends javax.swing.JFrame {
             c.setId_caixa((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             daoc.Excluir(c);
 
-            jTextFieldMes.setText("");
-            jTextFieldEntradas.setText("");
-            jTextFieldSaida.setText("");
+            
 
             ReadjTable();
         }else {
@@ -348,6 +339,9 @@ public class FechamentoCaixa extends javax.swing.JFrame {
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // TODO add your handling code here:
 
+        
+        
+        
         float Valor = Float.parseFloat(jTextFieldSaida.getText());
         float Ent = Float.parseFloat(jTextFieldEntradas.getText());
 
@@ -360,13 +354,39 @@ public class FechamentoCaixa extends javax.swing.JFrame {
         c.setId_caixa((int)jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         daoc.AtualizarFluxo(c);
 
-        jTextFieldMes.setText("");
-        jTextFieldEntradas.setText("");
-        jTextFieldSaida.setText("");
-
         ReadjTable();
 
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        
+        if(jTable1.getSelectedRow() != -1){
+            
+            jTextFieldMes.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+            jTextFieldEntradas.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+            jTextFieldSaida.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+            
+        
+        }else{
+        JOptionPane.showMessageDialog(null, "Escolha uma linha");
+        }
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        // TODO add your handling code here:
+        if(jTable1.getSelectedRow() != -1){
+            
+            jTextFieldMes.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+            jTextFieldEntradas.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+            jTextFieldSaida.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+            
+        
+        }else{
+        JOptionPane.showMessageDialog(null, "Escolha uma linha");
+        }
+    }//GEN-LAST:event_jTable1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -406,7 +426,6 @@ public class FechamentoCaixa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JLabel jLabel1;

@@ -9,6 +9,9 @@ import DAO.CaixaDAO;
 import DAO.ProdutoDAO;
 import Modelo.Caixa;
 import Modelo.Produto;
+import static java.lang.Thread.sleep;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -27,7 +30,20 @@ public class JAtendimento extends javax.swing.JFrame {
         DefaultTableModel T = (DefaultTableModel) jTableCompras.getModel();
         jTableCompras.setRowSorter(new TableRowSorter(T));
         
-        
+         new Thread(){
+            @Override
+            public void run(){
+                for(;;){
+                    dataEHora();
+                    
+                    try{
+                        sleep(1000);
+                    }catch(InterruptedException ie){
+                        ie.printStackTrace();
+                    }
+                }
+            }
+        }.start();
     }
 
     /**
@@ -65,6 +81,9 @@ public class JAtendimento extends javax.swing.JFrame {
         jTextFieldtotal = new javax.swing.JTextField();
         jTextFieldTroco = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabelData = new javax.swing.JLabel();
+        jLabelHora = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pagina de atendimento");
@@ -227,6 +246,18 @@ public class JAtendimento extends javax.swing.JFrame {
             }
         });
 
+        jLabelData.setText("jLabel12");
+
+        jLabelHora.setText("jLabel12");
+
+        jButton3.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jButton3.setText("Fechar caixa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -262,24 +293,28 @@ public class JAtendimento extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jTextFieldtotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldQuant, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                            .addComponent(jLabelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabelHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addComponent(jTextFieldValortotal, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
@@ -326,9 +361,13 @@ public class JAtendimento extends javax.swing.JFrame {
                                     .addComponent(jTextFieldtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,7 +375,8 @@ public class JAtendimento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -372,6 +412,62 @@ public class JAtendimento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void InitComponents() {
+
+        jLabelData = new javax.swing.JLabel();
+        jLabelHora = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabelData.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelData.setForeground(new java.awt.Color(51, 51, 255));
+        jLabelData.setText("jLabel1");
+
+        jLabelHora.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelHora.setForeground(new java.awt.Color(51, 51, 255));
+        jLabelHora.setText("jLabel2");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelData)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelHora)
+                .addContainerGap(220, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelData)
+                    .addComponent(jLabelHora))
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>
+    
+    public void dataEHora(){
+        Calendar cal = new GregorianCalendar();
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        int mes = cal.get(Calendar.MONTH);
+        int ano = cal.get(Calendar.YEAR);
+        
+        int hora = cal.get(Calendar.HOUR_OF_DAY);
+        int minuto = cal.get(Calendar.MINUTE);
+        int segundo = cal.get(Calendar.SECOND);
+        
+        jLabelData.setText("Data:"+dia+"/"+(mes+1)+"/"+ano);
+        jLabelHora.setText("Hora:"+hora+":"+minuto+":"+segundo);
+        
+        }
+    
+    
    public void ReadjTable(){
        
         
@@ -433,9 +529,9 @@ public class JAtendimento extends javax.swing.JFrame {
     private void jTextFieldCODActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCODActionPerformed
         // TODO add your handling code here:
         BuscarjTable(jTextFieldCOD.getText());
-        DefaultTableModel M = (DefaultTableModel) jTableCompras.getModel();
-        Object[] dados = {jTextFieldNome.getText(),jTextFieldCOD.getText(),jTextFieldPreco.getText(),jTextFieldQuant.getText(),jTextFieldtotal.getText()};
-        M.addRow(dados);
+//        DefaultTableModel M = (DefaultTableModel) jTableCompras.getModel();
+//        Object[] dados = {jTextFieldNome.getText(),jTextFieldCOD.getText(),jTextFieldPreco.getText(),jTextFieldQuant.getText(),jTextFieldtotal.getText()};
+//        M.addRow(dados);
         
         calculaTotalProdutos();
     }//GEN-LAST:event_jTextFieldCODActionPerformed
@@ -487,7 +583,6 @@ public class JAtendimento extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTextFieldQuantKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantKeyReleased
-
     }//GEN-LAST:event_jTextFieldQuantKeyReleased
 
     private void jTextFieldQuantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQuantActionPerformed
@@ -511,19 +606,39 @@ public class JAtendimento extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         float VF = Float.parseFloat(jTextFieldValortotal.getText());
         Caixa c = new Caixa();
         c.setEntradas(VF);
+        c.setDia(jLabelData.getText());
+        c.setHora(jLabelHora.getText());
         
         CaixaDAO daoc = new CaixaDAO();
         daoc.cadFluxo(c);
         
         ReadjTable();
         
+        JOptionPane.showMessageDialog(null, "finalizado com sucesso"); 
+        
+        jTextFieldCOD.setText("");
+        jTextFieldNome.setText("");
+        jTextFieldPreco.setText("");
+        jTextFieldQuant.setText("");
+        jTextFieldTroco.setText("");
+        jTextFieldValortotal.setText("");
+        jTextFieldtotal.setText("");
+        
+        ReadjTable();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
         FechamentoCaixa f = new FechamentoCaixa();
         f.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -563,6 +678,7 @@ public class JAtendimento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -575,6 +691,8 @@ public class JAtendimento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelData;
+    private javax.swing.JLabel jLabelHora;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

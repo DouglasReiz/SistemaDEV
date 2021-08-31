@@ -226,7 +226,7 @@ public class Inicial extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton7.setText("Fluxo de caixa");
+        jButton7.setText("Controle de Fluxo");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,9 +242,11 @@ public class Inicial extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jButton7))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton7)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel7)))
                 .addGap(37, 37, 37))
         );
         jPanel4Layout.setVerticalGroup(

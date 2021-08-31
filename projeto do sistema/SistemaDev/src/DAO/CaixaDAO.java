@@ -32,13 +32,15 @@ public class CaixaDAO {
           
             
             // 1Âº passo Criar Comando SQL
-            String cmsql = "insert caixa(Mes,Entradas,Saidas,Lucros)values(?,?,?,?)";
+            String cmsql = "insert caixa(Mes,Entradas,Saidas,Lucros,Dia,Hora)values(?,?,?,?,?,?)";
              // 1Âº Organizar o Comando SQL
             try (PreparedStatement stmt = conecta.prepareStatement(cmsql)) {
                 stmt.setString(1, c.getMes());
                 stmt.setFloat(2, c.getEntradas());
                 stmt.setFloat(3, c.getSaidas());
                 stmt.setFloat(4, c.getLucro());
+                stmt.setString(5, c.getDia());
+                stmt.setString(6, c.getHora());
                 // 1Âº Executar Comando SQL
                 stmt.execute();
                 // 1Âº Fechar ConeÃ§Ã£o
@@ -75,6 +77,8 @@ public java.util.List<Caixa> buscarFluxo(){
                  F.setSaidas(rs.getFloat("Saidas"));
                  F.setEntradas(rs.getFloat("Entradas"));
                  F.setLucro(rs.getFloat("Lucros"));
+                 F.setDia(rs.getString("Dia"));
+                 F.setHora(rs.getString("Hora"));
                  lista.add(F);
              }
         
@@ -104,6 +108,40 @@ public java.util.List<Caixa> buscarFluxo(){
                  ca.setEntradas(rs.getFloat("Entradas"));
                  ca.setSaidas(rs.getFloat("Saidas"));
                  ca.setLucro(rs.getFloat("Lucros"));
+                 ca.setDia(rs.getString("Dia"));
+                 ca.setHora(rs.getString("Hora"));
+                 lista.add(ca);
+             }
+        
+             
+         }catch (SQLException e) {
+             
+             JOptionPane.showMessageDialog(null, e);
+         }
+              return  lista;
+     
+     }
+    
+    public java.util.List<Caixa> buscarLucro(String Dia){
+     java.util.List<Caixa> lista = new ArrayList<>();
+     
+         try {
+              String cmsqlb = "SELECT * from caixa WHERE Dia LIKE ?";
+             // 1º Organizar o Comando SQL
+             
+             PreparedStatement stmt = conecta.prepareStatement(cmsqlb);
+             
+             stmt.setString(1, "%"+Dia+"%");
+             ResultSet rs = stmt.executeQuery();
+             while (rs.next()) {
+                 Caixa ca = new Caixa();
+                 ca.setId_caixa(rs.getInt("id_caixa"));
+                 ca.setMes(rs.getString("Mes"));
+                 ca.setEntradas(rs.getFloat("Entradas"));
+                 ca.setSaidas(rs.getFloat("Saidas"));
+                 ca.setLucro(rs.getFloat("Lucros"));
+                 ca.setDia(rs.getString("Dia"));
+                 ca.setHora(rs.getString("Hora"));
                  lista.add(ca);
              }
         

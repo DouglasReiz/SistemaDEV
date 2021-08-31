@@ -7,6 +7,9 @@ package Visao;
 
 import DAO.CaixaDAO;
 import Modelo.Caixa;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -25,6 +28,21 @@ public class FluxoCaixa extends javax.swing.JFrame {
         DefaultTableModel T = (DefaultTableModel) jTable1.getModel();
         jTable1.setRowSorter(new TableRowSorter(T));
         ReadjTable();
+        
+        new Thread(){
+            @Override
+            public void run(){
+                for(;;){
+                    dataEHora();
+                    
+                    try{
+                        sleep(1000);
+                    }catch(InterruptedException ie){
+                        ie.printStackTrace();
+                    }
+                }
+            }
+        }.start();
     }
 
     /**
@@ -48,6 +66,8 @@ public class FluxoCaixa extends javax.swing.JFrame {
         jTextFieldLucro = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
+        jLabelData = new javax.swing.JLabel();
+        jLabelHora = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fluxo de caixa");
@@ -58,16 +78,16 @@ public class FluxoCaixa extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Fluxo de caixa");
+        jLabel1.setText("Controle de Fluxo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(361, 361, 361)
+                .addGap(338, 338, 338)
                 .addComponent(jLabel1)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(344, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,11 +104,11 @@ public class FluxoCaixa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Mês ", "Entradas", "Saídas", "Lucro"
+                "ID", "Mês ", "Entradas", "Saídas", "Lucro", "Data", "Hora"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -102,6 +122,7 @@ public class FluxoCaixa extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
         }
 
@@ -127,6 +148,12 @@ public class FluxoCaixa extends javax.swing.JFrame {
             }
         });
 
+        jLabelData.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabelData.setText("a");
+
+        jLabelHora.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
+        jLabelHora.setText("a");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -143,13 +170,13 @@ public class FluxoCaixa extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldLucro)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldMes)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldLucro)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMes)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jLabelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -165,6 +192,10 @@ public class FluxoCaixa extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldLucro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonBusca)
@@ -209,6 +240,63 @@ public class FluxoCaixa extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void InitComponents() {
+
+        jLabelData = new javax.swing.JLabel();
+        jLabelHora = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabelData.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelData.setForeground(new java.awt.Color(51, 51, 255));
+        jLabelData.setText("jLabel1");
+
+        jLabelHora.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelHora.setForeground(new java.awt.Color(51, 51, 255));
+        jLabelHora.setText("jLabel2");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelData)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelHora)
+                .addContainerGap(220, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelData)
+                    .addComponent(jLabelHora))
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>
+    
+    
+    
+    public void dataEHora(){
+        Calendar cal = new GregorianCalendar();
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        int mes = cal.get(Calendar.MONTH);
+        int ano = cal.get(Calendar.YEAR);
+        
+        int hora = cal.get(Calendar.HOUR_OF_DAY);
+        int minuto = cal.get(Calendar.MINUTE);
+        int segundo = cal.get(Calendar.SECOND);
+        
+        jLabelData.setText("Data:"+dia+"/"+(mes+1)+"/"+ano);
+        jLabelHora.setText("Hora:"+hora+":"+minuto+":"+segundo);
+        
+        }
+    
     public void ReadjTable(){
        
         
@@ -222,7 +310,9 @@ public class FluxoCaixa extends javax.swing.JFrame {
             c.getMes(),
             c.getEntradas(),
             c.getSaidas(),
-            c.getLucro()
+            c.getLucro(),
+            c.getDia(),
+            c.getHora()
         });
     
         }
@@ -314,6 +404,8 @@ public class FluxoCaixa extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Lucro atualizado");
         
+        
+        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -370,6 +462,8 @@ public class FluxoCaixa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelData;
+    private javax.swing.JLabel jLabelHora;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

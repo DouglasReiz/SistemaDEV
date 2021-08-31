@@ -57,7 +57,6 @@ public class CadProduto extends javax.swing.JFrame {
         jTextFieldLote = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldCOD = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -80,6 +79,7 @@ public class CadProduto extends javax.swing.JFrame {
         jTextFieldQuant = new javax.swing.JTextField();
         jFormattedTextFieldPreco = new javax.swing.JFormattedTextField();
         jFormattedTextFieldValidade = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCod = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de produtos");
@@ -127,8 +127,6 @@ public class CadProduto extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Codigo de Barras:");
-
-        jTextFieldCOD.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Preço de Venda (R$):");
@@ -237,13 +235,15 @@ public class CadProduto extends javax.swing.JFrame {
         jTextFieldFabri.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jLabel12.setText("Quantidade (KG)");
+        jLabel12.setText("Quantidade ");
 
         jTextFieldQuant.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
 
         jFormattedTextFieldPreco.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
 
         jFormattedTextFieldValidade.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+
+        jFormattedTextFieldCod.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -268,9 +268,9 @@ public class CadProduto extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextFieldValidade)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldCOD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextFieldCod))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +279,9 @@ public class CadProduto extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextFieldPreco)))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -321,10 +323,10 @@ public class CadProduto extends javax.swing.JFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldCOD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -379,7 +381,13 @@ public class CadProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "erro ao formatar campo de texto", "erro", JOptionPane.ERROR_MESSAGE);
         }
         
-        
+        try {
+            MaskFormatter m = new MaskFormatter("#############");
+            m.install(jFormattedTextFieldCod);
+            
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "erro ao formatar campo de texto", "erro", JOptionPane.ERROR_MESSAGE);
+        }
         
         
     }
@@ -397,7 +405,7 @@ public class CadProduto extends javax.swing.JFrame {
         p.setLote(jTextFieldLote.getText());
         p.setValidade(jFormattedTextFieldValidade.getText());
         p.setFabricante(jTextFieldFabri.getText());
-        p.setCodBarras(jTextFieldCOD.getText());
+        p.setCodBarras(jFormattedTextFieldCod.getText());
         p.setClassificacao(jComboBox1.getSelectedItem().toString());
         p.setValordvenda(Valor);
         p.setQuantidade(Quant);
@@ -417,6 +425,21 @@ public class CadProduto extends javax.swing.JFrame {
         
         CaixaDAO c = new CaixaDAO();
         c.cadFluxo(C);
+        JOptionPane.showMessageDialog(null, "Produto Cadastrado com sucesso");
+        
+        jTextFieldNome.setText("");
+        jTextFieldLote.setText("");
+        jTextFieldFabri.setText("");
+        jFormattedTextFieldValidade.setText("");
+        jTextFieldFabri.setText("");
+        jFormattedTextFieldCod.setText("");
+        jTextFieldEntreg.setText("");
+        jTextFieldQuant.setText("");
+        jFormattedTextFieldDia.setText("");
+        jFormattedTextFieldPreco.setText("");
+        jFormattedTextFieldValor.setText("");
+        
+                
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -470,6 +493,7 @@ public class CadProduto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<Object> jComboBoxFornecedor;
     private javax.swing.JComboBox<Object> jComboBoxMes;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCod;
     private javax.swing.JFormattedTextField jFormattedTextFieldDia;
     private javax.swing.JFormattedTextField jFormattedTextFieldPreco;
     private javax.swing.JFormattedTextField jFormattedTextFieldValidade;
@@ -492,7 +516,6 @@ public class CadProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextFieldCOD;
     private javax.swing.JTextField jTextFieldEntreg;
     private javax.swing.JTextField jTextFieldFabri;
     private javax.swing.JTextField jTextFieldLote;
