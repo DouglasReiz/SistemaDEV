@@ -10,6 +10,7 @@ import Modelo.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -27,20 +28,19 @@ public void cadLogin(Login l){
     //-----------------------------------------------------
         try {
              // 1Âº passo Criar Comando SQL
-            String cmsql = "insert login(Usuario,Senha,Codigo,Email)values(?,?,?,?)";
+            String cmsql = "insert login(Usuario,Senha,Email,PergSeguranca,RespSeguranca)values(?,?,?,?,?)";
              // 1Âº Organizar o Comando SQL
-             
-             PreparedStatement stmt = conecta.prepareStatement(cmsql);
-             stmt.setString(1, l.getUsuario());
-              stmt.setString(2, l.getSenha());
-               stmt.setString(3, l.getCodigo());
-                stmt.setString(4, l.getEmail());
-             // 1Âº Executar Comando SQL
-             stmt.execute();
-             
-             // 1Âº Fechar ConeÃ§Ã£o
-             stmt.close();
-        } catch (Exception erro) {
+            try (PreparedStatement stmt = conecta.prepareStatement(cmsql)) {
+                stmt.setString(1, l.getUsuario());
+                stmt.setString(2, l.getSenha());
+                stmt.setString(3, l.getEmail());
+                stmt.setString(4, l.getPergunta());
+                stmt.setString(5, l.getResposta());
+                // 1Âº Executar Comando SQL
+                stmt.execute();
+                // 1Âº Fechar ConeÃ§Ã£o
+            }
+        } catch (SQLException erro) {
             
              JOptionPane.showMessageDialog(null, "Erro ao cadastrar Informações de login"+erro);
             throw new RuntimeException(erro);
@@ -50,16 +50,32 @@ public void cadLogin(Login l){
 }
 
 
-public void Atualizar(Login l){
-System.out.println(l.getUsuario());
-System.out.println(l.getSenha());
-System.out.println(l.getEmail());
-System.out.println(l.getCodigo());
-}
+public void AtualizarSenha(Login l){
+    //-----------------------------------------------------
+        try {
+            // 1Âº passo Criar Comando SQL
+            String cmsql = "UPDATE login SET Senha = ? WHERE RespSeguranca = ?";
+             // 1Âº Organizar o Comando SQL
+            try (PreparedStatement stmt = conecta.prepareStatement(cmsql)) {
+                
+                stmt.setString(1, l.getSenha());
+                stmt.setString(2, l.getResposta());
+                
+                // 1Âº Executar Comando SQL
+                stmt.executeUpdate();
+                // 1Âº Fechar ConeÃ§Ã£o
+            }
+        } catch (SQLException erro) {
+            
+             JOptionPane.showMessageDialog(null, "Erro ao Atualizar Senha " +erro);
+            throw new RuntimeException(erro);
+        }
+        //-------------------------------------------------
+    }
 
 public java.util.List<Login> buscaridlogin(){
    
-     java.util.List<Login> lista = new ArrayList<Login>();
+     java.util.List<Login> lista = new ArrayList<>();
      
          try {
               String cmsqlb = "select max(id_login) from login";
@@ -81,7 +97,7 @@ public java.util.List<Login> buscaridlogin(){
              }
         
              
-         }catch (Exception e) {
+         }catch (SQLException e) {
              
              JOptionPane.showMessageDialog(null, e);
          }
@@ -113,7 +129,7 @@ public boolean FazerLogin(String Usua,String Senha){
              } 
              
    
-         } catch (Exception e) {
+         } catch (SQLException e) {
              
              
          }
@@ -127,12 +143,44 @@ public boolean FazerLogin(String Usua,String Senha){
 
 
 
+
 public void Excluir(Login l){
 System.out.println(l.getUsuario());
 System.out.println(l.getSenha());
 System.out.println(l.getEmail());
-System.out.println(l.getCodigo());
+System.out.println(l.getPergunta());
+System.out.println(l.getResposta());
 }
 
+public java.util.List<Login> buscarLogin(String Email){
+     java.util.List<Login> lista = new ArrayList<>();
+     
+         try {
+              String cmsqlb = "SELECT * from login WHERE Email LIKE ?";
+             // 1º Organizar o Comando SQL
+             
+             PreparedStatement stmt = conecta.prepareStatement(cmsqlb);
+             
+             stmt.setString(1, "%"+Email+"%");
+             ResultSet rs = stmt.executeQuery();
+             while (rs.next()) {
+                 Login l = new Login();
+                 l.setId_login(rs.getInt("id_login"));
+                 l.setUsuario(rs.getString("Usuario"));
+                 l.setSenha(rs.getString("Senha"));
+                 l.setEmail(rs.getString("Email"));
+                 l.setPergunta(rs.getString("PergSeguranca"));
+                 l.setResposta(rs.getString("RespSeguranca"));
+                 lista.add(l);
+             }
+        
+             
+         }catch (Exception e) {
+             
+             JOptionPane.showMessageDialog(null, e);
+         }
+              return  lista;
+     
+     }
 
 }

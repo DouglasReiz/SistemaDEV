@@ -13,8 +13,9 @@ public class Login {
     private int id_login;
     private String Usuario;
     private String Senha;
-    private String Codigo;
     private String Email;
+    private String Pergunta;
+    private String Resposta;
 
     public int getId_login() {
         return id_login;
@@ -40,13 +41,7 @@ public class Login {
         this.Senha = Senha;
     }
 
-    public String getCodigo() {
-        return Codigo;
-    }
-
-    public void setCodigo(String Codigo) {
-        this.Codigo = Codigo;
-    }
+    
 
     public String getEmail() {
         return Email;
@@ -54,6 +49,22 @@ public class Login {
 
     public void setEmail(String Email) {
         this.Email = Email;
+    }
+
+    public String getPergunta() {
+        return Pergunta;
+    }
+
+    public void setPergunta(String Pergunta) {
+        this.Pergunta = Pergunta;
+    }
+
+    public String getResposta() {
+        return Resposta;
+    }
+
+    public void setResposta(String Resposta) {
+        this.Resposta = Resposta;
     }
     
     

@@ -5,6 +5,11 @@
  */
 package Visao;
 
+import static java.lang.Thread.sleep;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jorge
@@ -16,6 +21,20 @@ public class Inicial extends javax.swing.JFrame {
      */
     public Inicial() {
         initComponents();
+        new Thread(){
+            @Override
+            public void run(){
+                for(;;){
+                    dataEHora();
+                    
+                    try{
+                        sleep(1000);
+                    }catch(InterruptedException ie){
+                        ie.printStackTrace();
+                    }
+                }
+            }
+        }.start();
     }
 
     /**
@@ -45,6 +64,8 @@ public class Inicial extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabelData = new javax.swing.JLabel();
+        jLabelHora = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -206,22 +227,40 @@ public class Inicial extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jorge\\OneDrive\\Imagens\\curso douglas\\mercado icon.png")); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabelData.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jLabelData.setText("jLabel9");
+
+        jLabelHora.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabelHora.setText("jLabel9");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(184, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelData, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jLabelHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addGap(169, 169, 169))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -300,6 +339,60 @@ public class Inicial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void InitComponents() {
+
+        jLabelData = new javax.swing.JLabel();
+        jLabelHora = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabelData.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelData.setForeground(new java.awt.Color(51, 51, 255));
+        jLabelData.setText("jLabel1");
+
+        jLabelHora.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelHora.setForeground(new java.awt.Color(51, 51, 255));
+        jLabelHora.setText("jLabel2");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelData)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelHora)
+                .addContainerGap(220, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelData)
+                    .addComponent(jLabelHora))
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>
+    
+    public void dataEHora(){
+        Calendar cal = new GregorianCalendar();
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        int mes = cal.get(Calendar.MONTH);
+        int ano = cal.get(Calendar.YEAR);
+        
+        int hora = cal.get(Calendar.HOUR_OF_DAY);
+        int minuto = cal.get(Calendar.MINUTE);
+        int segundo = cal.get(Calendar.SECOND);
+        
+        jLabelData.setText("Data:"+dia+"/"+(mes+1)+"/"+ano);
+        jLabelHora.setText("Hora:"+hora+":"+minuto+":"+segundo);
+        
+        }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         CadFuncionario f = new CadFuncionario();
@@ -332,9 +425,21 @@ public class Inicial extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
+        
+        String Cargo = JOptionPane.showInputDialog("Qual o seu cargo?");
+        
+        if(Cargo.equals("Administrador")){
         FluxoCaixa C = new FluxoCaixa();
         C.setVisible(true);
         dispose();
+        }else {
+        
+        JOptionPane.showMessageDialog(null, "Seu nivel de permissão"+Cargo+"não é suficiente");
+        
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -411,6 +516,8 @@ public class Inicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelData;
+    private javax.swing.JLabel jLabelHora;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

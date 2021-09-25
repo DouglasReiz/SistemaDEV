@@ -110,7 +110,9 @@ public class CadFuncionario extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jTextFieldConsen = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        jTextFieldCod = new javax.swing.JTextField();
+        jComboBoxPerg = new javax.swing.JComboBox<>();
+        jLabel39 = new javax.swing.JLabel();
+        jTextFieldResp = new javax.swing.JTextField();
         jButtonCadastro = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -120,7 +122,6 @@ public class CadFuncionario extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(53, 136, 178));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 14))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 0, 51), null));
@@ -151,9 +152,11 @@ public class CadFuncionario extends javax.swing.JFrame {
 
         jComboBoxSexo.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Selecionar-", "Masculino", "Feminino" }));
+        jComboBoxSexo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jComboBoxRaca.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jComboBoxRaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Selecionar-", "Branco", "Negro", "Pardo", "Indigena" }));
+        jComboBoxRaca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Nome:");
@@ -235,7 +238,7 @@ public class CadFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                        .addComponent(jFormattedTextFieldCPF)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jFormattedTextFieldRG, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,6 +270,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButtonSim);
         jRadioButtonSim.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jRadioButtonSim.setText("SIM");
+        jRadioButtonSim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButtonSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonSimActionPerformed(evt);
@@ -277,6 +281,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButtonNao);
         jRadioButtonNao.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jRadioButtonNao.setText("NÃO");
+        jRadioButtonNao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel7.setText("Email:");
@@ -316,7 +321,7 @@ public class CadFuncionario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldInsta))
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 13, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -339,7 +344,7 @@ public class CadFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldInsta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldTel, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addComponent(jFormattedTextFieldTel))
                 .addContainerGap())
         );
 
@@ -366,6 +371,7 @@ public class CadFuncionario extends javax.swing.JFrame {
 
         jCheckBoxSnum.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBoxSnum.setText("S/ Nº");
+        jCheckBoxSnum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel37.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel37.setText("CEP");
@@ -526,16 +532,28 @@ public class CadFuncionario extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
         jLabel27.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Usuário:");
 
         jLabel29.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel29.setText("Senha:");
 
         jLabel28.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Confirmar senha:");
 
+        jLabel30.setBackground(new java.awt.Color(0, 0, 0));
         jLabel30.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jLabel30.setText("codigo de verificação");
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Pergunta de Segurança");
+
+        jComboBoxPerg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Selecionar-", "Nome de solteira da mãe", "Nome do animal de estimação", "Nome do melhor Amigo", "Seu prato de comida favorito", "Seu primeiro carro" }));
+        jComboBoxPerg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel39.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel39.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel39.setText("Resposta");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -544,22 +562,28 @@ public class CadFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel39)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldResp, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldConsen))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldUsua)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel29)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldSen, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCod))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldConsen))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldUsua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel29)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldSen, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxPerg, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
         );
         jPanel8Layout.setVerticalGroup(
@@ -571,19 +595,24 @@ public class CadFuncionario extends javax.swing.JFrame {
                     .addComponent(jTextFieldUsua, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldSen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldConsen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxPerg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldResp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButtonCadastro.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButtonCadastro.setText("Cadastrar");
+        jButtonCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonCadastroMouseClicked(evt);
@@ -597,6 +626,7 @@ public class CadFuncionario extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButton1.setText("Busca");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -607,26 +637,27 @@ public class CadFuncionario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(241, 241, 241)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
@@ -641,15 +672,15 @@ public class CadFuncionario extends javax.swing.JFrame {
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(16, 16, 16))
+                    .addComponent(jButtonCadastro)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -659,14 +690,14 @@ public class CadFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -680,7 +711,7 @@ public class CadFuncionario extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(893, 668));
+        setSize(new java.awt.Dimension(906, 646));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -891,13 +922,14 @@ public class CadFuncionario extends javax.swing.JFrame {
         Login l = new Login();
         l.setUsuario(jTextFieldUsua.getText());
         l.setSenha(jTextFieldSen.getText());
-        l.setCodigo(jTextFieldCod.getText());
         l.setEmail(jTextFieldEmail.getText());
+        l.setPergunta(jComboBoxPerg.getSelectedItem().toString());
+        l.setResposta(jTextFieldResp.getText());
         
         LoginDAO L = new LoginDAO();
         L.cadLogin(l);
         
-        JOptionPane.showMessageDialog(null, "Anote seu codigo de verificção pois só com ele poderá redefinir a senha");
+        
         
         JLogin j = new JLogin();
         j.setVisible(true);
@@ -975,6 +1007,7 @@ public class CadFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadastro;
     private javax.swing.JCheckBox jCheckBoxSnum;
+    private javax.swing.JComboBox<String> jComboBoxPerg;
     private javax.swing.JComboBox<String> jComboBoxRaca;
     private javax.swing.JComboBox<String> jComboBoxSexo;
     private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
@@ -1010,6 +1043,7 @@ public class CadFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1029,7 +1063,6 @@ public class CadFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCargo;
     private javax.swing.JTextField jTextFieldCidade;
-    private javax.swing.JTextField jTextFieldCod;
     private javax.swing.JTextField jTextFieldComi;
     private javax.swing.JTextField jTextFieldComp;
     private javax.swing.JTextField jTextFieldConsen;
@@ -1039,6 +1072,7 @@ public class CadFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldNum;
     private javax.swing.JTextField jTextFieldPais;
+    private javax.swing.JTextField jTextFieldResp;
     private javax.swing.JTextField jTextFieldRua;
     private javax.swing.JTextField jTextFieldSalar;
     private javax.swing.JTextField jTextFieldSen;

@@ -156,6 +156,7 @@ public class CadFornecedor extends javax.swing.JFrame {
 
         jCheckBoxSnum.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jCheckBoxSnum.setText("S/ N");
+        jCheckBoxSnum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel13.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel13.setText("Complemento");
@@ -262,6 +263,7 @@ public class CadFornecedor extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButtonSim);
         jRadioButtonSim.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jRadioButtonSim.setText("Sim");
+        jRadioButtonSim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButtonSim.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRadioButtonSimMouseClicked(evt);
@@ -271,6 +273,7 @@ public class CadFornecedor extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButtonNao);
         jRadioButtonNao.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jRadioButtonNao.setText("Não");
+        jRadioButtonNao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButtonNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonNaoActionPerformed(evt);
@@ -318,7 +321,7 @@ public class CadFornecedor extends javax.swing.JFrame {
                                     .addComponent(jTextFieldInsta, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 49, Short.MAX_VALUE))))
+                        .addGap(0, 52, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,6 +352,7 @@ public class CadFornecedor extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButton1.setText("Cadastrar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -357,6 +361,7 @@ public class CadFornecedor extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jButton2.setText("Buscar");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -433,8 +438,8 @@ public class CadFornecedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jButton2))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -444,7 +449,7 @@ public class CadFornecedor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,7 +470,7 @@ public class CadFornecedor extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(790, 645));
+        setSize(new java.awt.Dimension(804, 645));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -545,7 +550,7 @@ public class CadFornecedor extends javax.swing.JFrame {
                
               id_contatoparabanco = obja.getId_contato();
                 System.out.println(obja.getId_contato());
-                JOptionPane.showMessageDialog(this,"Responsavel cadastrado com sucesso");
+                
 
             }
         } catch (Exception e) {
@@ -562,7 +567,7 @@ public class CadFornecedor extends javax.swing.JFrame {
                
               id_enderecoparabanco = obja.getId_endereco();
                 System.out.println(obja.getId_endereco());
-                JOptionPane.showMessageDialog(this,"Endereço cadastrado com sucesso");
+                
 
             }
         } catch (Exception e) {
@@ -612,6 +617,7 @@ public class CadFornecedor extends javax.swing.JFrame {
             c.setFixo(jFormattedTextFieldTel.getText());
             c.setWhatsapp(jRadioButtonSim.getText());
             c.setWhatsapp(jRadioButtonNao.getText());
+            c.setInstagram(jTextFieldInsta.getText());
             
             ContatoDAO C = new ContatoDAO();
             C.cadContato(c);

@@ -7,7 +7,6 @@ package Visao;
 
 import DAO.CaixaDAO;
 import Modelo.Caixa;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
@@ -115,6 +114,7 @@ public class FluxoCaixa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -128,6 +128,7 @@ public class FluxoCaixa extends javax.swing.JFrame {
 
         jButtonBusca.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jButtonBusca.setText("Buscar");
+        jButtonBusca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscaActionPerformed(evt);
@@ -142,6 +143,7 @@ public class FluxoCaixa extends javax.swing.JFrame {
 
         jButtonSalvar.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -200,7 +202,7 @@ public class FluxoCaixa extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonBusca)
                             .addComponent(jButtonSalvar)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 
@@ -236,7 +238,7 @@ public class FluxoCaixa extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(919, 530));
+        setSize(new java.awt.Dimension(911, 530));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

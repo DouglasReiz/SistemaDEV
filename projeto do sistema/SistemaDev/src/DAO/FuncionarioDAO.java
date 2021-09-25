@@ -83,6 +83,41 @@ public void cadFuncionario(Funcionario f){
               return  lista;
      }
     
+    
+    public java.util.List<Funcionario> buscarFuncionarios(){
+     java.util.List<Funcionario> lista = new ArrayList<>();
+         try {
+              String cmsqlb = "select * from funcionario";
+             // 1º Organizar o Comando SQL
+             PreparedStatement stmt = conecta.prepareStatement(cmsqlb);
+             
+             ResultSet rs = stmt.executeQuery();
+             while (rs.next()) {
+                 Funcionario P = new Funcionario();
+                 P.setId_funcionario(rs.getInt("id_funcionario"));
+                 P.setNome(rs.getString("Nome"));
+                 P.setCPF(rs.getString("CPF"));
+                 P.setRG(rs.getString("RG"));
+                 P.setSexo(rs.getString("Sexo"));
+                 P.setRaca(rs.getString("Raca"));
+                 P.setCNH(rs.getString("CNH"));
+                 P.setDataNasc(rs.getString("DataNasc"));
+                 P.setFuncao(rs.getString("Funcao"));
+                 P.setHinicio(rs.getString("Hinicio"));
+                 P.setHfim(rs.getString("HFim"));
+                 P.setSalario(rs.getString("Salario"));
+                 P.setComissao(rs.getString("Comissao"));
+                 lista.add(P);
+             }
+        
+             
+         }catch (Exception e) {
+             
+             JOptionPane.showMessageDialog(null, e);
+         }
+              return  lista;
+     }
+    
     public void Atualizar(Funcionario f) {
     System.out.println(f.getNome());
     System.out.println(f.getRG());

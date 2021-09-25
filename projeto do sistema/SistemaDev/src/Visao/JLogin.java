@@ -6,6 +6,7 @@
 package Visao;
 
 import DAO.LoginDAO;
+import Modelo.Login;
 import javax.swing.JOptionPane;
 
 /**
@@ -154,10 +155,12 @@ public class JLogin extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(415, 502));
+        setSize(new java.awt.Dimension(407, 502));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         CadFuncionario c = new CadFuncionario();
