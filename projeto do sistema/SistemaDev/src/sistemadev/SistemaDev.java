@@ -5,6 +5,11 @@
  */
 package sistemadev;
 
+import com.sun.jmx.snmp.InetAddressAcl;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jorge
@@ -14,8 +19,18 @@ public class SistemaDev {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
         // TODO code application logic here
+        
+        String nomePC = InetAddress.getLocalHost().getHostName();
+        System.out.println(nomePC);
+        
+        String Ip = InetAddress.getLocalHost().getHostAddress();
+        System.out.println(Ip);
+        
+        
+        
+        
     }
     
 }

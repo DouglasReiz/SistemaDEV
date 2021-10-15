@@ -7,6 +7,7 @@ package DAO;
 
 import JDDC.fabricaconecao;
 import Modelo.Login;
+import Visao.JLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -119,10 +120,14 @@ public boolean FazerLogin(String Usua,String Senha){
              
              ResultSet rs = stmt.executeQuery();
              
+            
+            
+             
           
              
              if (rs.first()) {
 
+                
                  //fez login
                
                  return true;

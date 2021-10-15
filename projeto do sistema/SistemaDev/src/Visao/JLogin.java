@@ -183,9 +183,9 @@ public class JLogin extends javax.swing.JFrame {
             LoginDAO daol = new LoginDAO();
         
         if (daol.FazerLogin(Usua,Senha)) {
-            
            Inicial i = new Inicial();
             i.setVisible(true);
+            
         
         dispose();
        // tela.setResizable(false);
